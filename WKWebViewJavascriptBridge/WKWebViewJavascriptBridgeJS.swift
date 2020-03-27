@@ -95,8 +95,8 @@ let WKWebViewJavascriptBridgeJS = """
 
     setTimeout(_callWVJBCallbacks, 0);
     function _callWVJBCallbacks() {
-        var callbacks = window.WKWVJBCallbacks;
-        delete window.WKWVJBCallbacks;
+        var callbacks = window.WVJBCallbacks;
+        delete window.WVJBCallbacks;
         for (var i = 0; i < callbacks.length; i++) {
             callbacks[i](WebViewJavascriptBridge);
         }
