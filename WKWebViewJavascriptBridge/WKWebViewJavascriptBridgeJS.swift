@@ -95,11 +95,14 @@ let WKWebViewJavascriptBridgeJS = """
 
     setTimeout(_callWVJBCallbacks, 0);
     function _callWVJBCallbacks() {
-        var callbacks = window.WVJBCallbacks || [];
-        delete window.WVJBCallbacks;
-        for (var i = 0; i < callbacks.length; i++) {
-            callbacks[i](WebViewJavascriptBridge);
-        }
+      var callbacks = window.WVJBCallbacks;
+      if(!callbacks) {
+        return
+      }
+      delete window.WVJBCallbacks;
+      for (var i = 0; i < callbacks.length; i++) {
+        callbacks[i](WebViewJavascriptBridge);
+      }
     }
 })();
 """
