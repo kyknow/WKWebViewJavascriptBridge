@@ -57,9 +57,9 @@ public class WKWebViewJavascriptBridge: NSObject {
     
     // MARK: - Private Funcs
     private func flushMessageQueue() {
-        webView?.evaluateJavaScript("WKWebViewJavascriptBridge._fetchQueue();") { (result, error) in
+        webView?.evaluateJavaScript("WebViewJavascriptBridge._fetchQueue();") { (result, error) in
             if error != nil {
-                print("WKWebViewJavascriptBridge: WARNING: Error when trying to fetch data from WKWebView: \(String(describing: error))")
+                print("WebViewJavascriptBridge: WARNING: Error when trying to fetch data from WKWebView: \(String(describing: error))")
             }
             
             guard let resultStr = result as? String else { return }

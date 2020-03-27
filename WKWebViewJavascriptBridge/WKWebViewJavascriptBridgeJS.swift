@@ -10,16 +10,16 @@ import Foundation
 
 let WKWebViewJavascriptBridgeJS = """
 ;(function() {
-    if (window.WKWebViewJavascriptBridge) {
+    if (window.WebViewJavascriptBridge) {
         return;
     }
 
     if (!window.onerror) {
         window.onerror = function(msg, url, line) {
-            console.log("WKWebViewJavascriptBridge: ERROR:" + msg + "@" + url + ":" + line);
+            console.log("WebViewJavascriptBridge: ERROR:" + msg + "@" + url + ":" + line);
         }
     }
-    window.WKWebViewJavascriptBridge = {
+    window.WebViewJavascriptBridge = {
         registerHandler: registerHandler,
         callHandler: callHandler,
         _fetchQueue: _fetchQueue,
@@ -82,7 +82,7 @@ let WKWebViewJavascriptBridgeJS = """
 
             var handler = messageHandlers[message.handlerName];
             if (!handler) {
-                console.log("WKWebViewJavascriptBridge: WARNING: no handler for message from iOS:", message);
+                console.log("WebViewJavascriptBridge: WARNING: no handler for message from iOS:", message);
             } else {
                 handler(message.data, responseCallback);
             }
@@ -98,7 +98,7 @@ let WKWebViewJavascriptBridgeJS = """
         var callbacks = window.WKWVJBCallbacks;
         delete window.WKWVJBCallbacks;
         for (var i = 0; i < callbacks.length; i++) {
-            callbacks[i](WKWebViewJavascriptBridge);
+            callbacks[i](WebViewJavascriptBridge);
         }
     }
 })();
